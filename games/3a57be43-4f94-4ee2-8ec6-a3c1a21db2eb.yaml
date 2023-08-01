@@ -1,0 +1,13 @@
+---
+id: '3a57be43-4f94-4ee2-8ec6-a3c1a21db2eb'
+name: 'Fear & Hunger'
+
+stores:
+    itch:
+        name: 'Fear & Hunger'
+        url: 'https://mirohaver.itch.io/fear-hunger'
+        gameId: 145366
+    steam:
+        name: 'Fear & Hunger'
+        url: 'https://store.steampowered.com/app/1002300/'
+        appId: 1002300

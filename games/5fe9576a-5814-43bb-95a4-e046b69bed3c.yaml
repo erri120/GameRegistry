@@ -1,0 +1,13 @@
+---
+id: '5fe9576a-5814-43bb-95a4-e046b69bed3c'
+name: 'Fear & Hunger: Termina'
+
+stores:
+    itch:
+        name: 'Fear & Hunger: Termina'
+        url: 'https://mirohaver.itch.io/fear-hunger-termina'
+        gameId: 520263
+    steam:
+        name: 'Fear & Hunger 2: Termina'
+        url: 'https://store.steampowered.com/app/2171440/'
+        appId: 2171440

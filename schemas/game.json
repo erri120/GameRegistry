@@ -106,6 +106,24 @@
             "required": [ "name", "id" ],
             "additionalProperties": false
         },
+        "itchGame": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "url": {
+                    "type": "string",
+                    "$comment": "https://regex101.com/r/F5uqIw/1",
+                    "pattern": "^https://[\\w-]+\\.itch\\.io/[\\w-]+$"
+                },
+                "gameId": {
+                    "type": "integer"
+                }
+            },
+            "required": [ "name", "gameId" ],
+            "additionalProperties": false
+        },
         "storesGames": {
             "type": "object",
             "properties": {
@@ -120,6 +138,9 @@
                 },
                 "xbox": {
                     "$ref": "#/definitions/xboxGame"
+                },
+                "itch": {
+                    "$ref": "#/definitions/itchGame"
                 }
             },
             "additionalProperties": false
