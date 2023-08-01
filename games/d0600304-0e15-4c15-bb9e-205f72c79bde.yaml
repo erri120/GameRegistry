@@ -44,6 +44,8 @@ dlcs:
 bundles:
     - id: '937773aa-6f4d-483c-b150-ab5637a9e5d4'
       name: 'The Elder Scrolls V: Skyrim Anniversary Edition'
+      includedDLCs:
+          - 'e7d7d7d5-4cd7-47e6-9bed-801ff4522c9d'
       stores:
           steam:
               name: 'The Elder Scrolls V: Skyrim Anniversary Edition'

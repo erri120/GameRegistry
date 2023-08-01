@@ -205,6 +205,13 @@
                     "name": {
                         "$ref": "#/definitions/name"
                     },
+                    "includedDLCs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/guid"
+                        },
+                        "uniqueItems": true
+                    },
                     "stores": {
                         "$ref": "#/definitions/storesBundles"
                     }
