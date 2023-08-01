@@ -5,11 +5,13 @@ on:
         branches: [ main ]
         paths:
             - '.github/workflows/lint.yaml'
+            - 'yamllint.yaml'
             - 'games/*.yaml'
     pull_request:
         branches: [ main ]
         paths:
             - '.github/workflows/lint.yaml'
+            - 'yamllint.yaml'
             - 'games/*.yaml'
     workflow_dispatch:
 
@@ -26,4 +28,6 @@ jobs:
               run: sudo apt-get install yamllint
 
             - name: Lint
-              run: yamllint -c yamllint.yaml games
+              run: |
+                yamllint -c yamllint.yaml yamllint.yaml
+                yamllint -c yamllint.yaml games

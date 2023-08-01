@@ -11,4 +11,4 @@ stores:
         name: 'Fear & Hunger'
         url: 'https://store.steampowered.com/app/1002300/'
         appId: 1002300
-        restrictedCountries: [ "CHN", "DEU" ]
+        restrictedCountries: [ 'CHN', 'DEU' ]

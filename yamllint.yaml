@@ -1,7 +1,8 @@
-extends: default
+---
+extends: 'default'
 
 rules:
-    line-length: disable
+    line-length: 'disable'
 
     brackets:
         forbid: false
@@ -9,3 +10,7 @@ rules:
         max-spaces-inside: 1
         min-spaces-inside-empty: 0
         max-spaces-inside-empty: 0
+
+    quoted-strings:
+        quote-type: 'single'
+        required: true
