@@ -16,6 +16,18 @@
         "name": {
             "$ref": "#/definitions/nonEmptyString"
         },
+        "countryCode": {
+            "type": "string",
+            "$comment": "ISO 3166-1 alpha-3",
+            "pattern": "^[A-Z]{3}$"
+        },
+        "countryArray": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/countryCode"
+            },
+            "uniqueItems": true
+        },
         "steamApp": {
             "type": "object",
             "properties": {
@@ -29,6 +41,9 @@
                 },
                 "appId": {
                     "type": "integer"
+                },
+                "restrictedCountries": {
+                    "$ref": "#/definitions/countryArray"
                 }
             },
             "required": [ "name", "appId" ],
@@ -47,6 +62,9 @@
                 },
                 "subId": {
                     "type": "integer"
+                },
+                "restrictedCountries": {
+                    "$ref": "#/definitions/countryArray"
                 }
             },
             "required": [ "name", "subId" ],
