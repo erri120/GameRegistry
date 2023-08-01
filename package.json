@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "validate": "ajv validate -s schemas/game.json -d \"games/*.yaml\" --strict=true --errors=js --spec=draft2020",
+        "compile": "ajv compile -s schemas/game.json --spec=draft2020"
+    },
+    "dependencies": {
+        "ajv-cli": "^5.0.0"
+    }
+}

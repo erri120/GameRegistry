@@ -1,0 +1,28 @@
+name: Lint
+
+on:
+    push:
+        branches: [ main ]
+        paths:
+            - '.github/workflows/lint.yaml'
+            - 'games/*.yaml'
+    pull_request:
+        branches: [ main ]
+        paths:
+            - '.github/workflows/lint.yaml'
+            - 'games/*.yaml'
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  submodules: 'recursive'
+
+            - name: Install linter
+              run: sudo apt-get install yamllint
+
+            - name: Lint
+              run: yamllint -c yamllint.yaml games
