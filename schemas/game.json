@@ -1,0 +1,196 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/erri120/GameRegistry/schema.json",
+    "title": "Game",
+    "type": "object",
+    "definitions": {
+        "guid": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "name": {
+            "type": "string",
+            "$comment": "https://regex101.com/r/dCBZ4k/1",
+            "pattern": "^(?!\\s)\\S.*(?<!\\s)$"
+        },
+        "steamApp": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "url": {
+                    "type": "string",
+                    "$comment": "https://regex101.com/r/g9yshM/1",
+                    "pattern": "^https://store\\.steampowered\\.com/app/\\d+/$"
+                },
+                "appId": {
+                    "type": "integer"
+                }
+            },
+            "required": [ "name", "appId" ],
+            "additionalProperties": false
+        },
+        "steamPackage": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "url": {
+                    "type": "string",
+                    "$comment": "https://regex101.com/r/HsiIwO/1",
+                    "pattern": "^https://store\\.steampowered\\.com/sub/\\d+/$"
+                },
+                "subId": {
+                    "type": "integer"
+                }
+            },
+            "required": [ "name", "subId" ],
+            "additionalProperties": false
+        },
+        "gogProduct": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "url": {
+                    "type": "string",
+                    "$comment": "https://regex101.com/r/68TA3p/1",
+                    "pattern": "^https://www\\.gog\\.com/game/\\w+$"
+                },
+                "productId": {
+                    "type": "integer"
+                }
+            },
+            "required": [ "name", "productId" ],
+            "additionalProperties": false
+        },
+        "egsCatalogItem": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "url": {
+                    "type": "string",
+                    "$comment": "https://regex101.com/r/mUD57x/1",
+                    "pattern": "^https://store\\.epicgames\\.com/en-[uU][sS]/p/[\\w-]+$"
+                },
+                "catalogItemId": {
+                    "type": "string"
+                }
+            },
+            "required": [ "name", "catalogItemId" ],
+            "additionalProperties": false
+        },
+        "xboxGame": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "url": {
+                    "type": "string",
+                    "$comment": "https://regex101.com/r/jYPy4u/1",
+                    "pattern": "^https://www\\.xbox\\.com/en-[uU][sS]/games/store/[\\w-]+/\\w+$"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [ "name", "id" ],
+            "additionalProperties": false
+        },
+        "storesGames": {
+            "type": "object",
+            "properties": {
+                "steam": {
+                    "$ref": "#/definitions/steamApp"
+                },
+                "gog": {
+                    "$ref": "#/definitions/gogProduct"
+                },
+                "egs": {
+                    "$ref": "#/definitions/egsCatalogItem"
+                },
+                "xbox": {
+                    "$ref": "#/definitions/xboxGame"
+                }
+            },
+            "additionalProperties": false
+        },
+        "storesBundles": {
+            "type": "object",
+            "properties": {
+                "steam": {
+                    "$ref": "#/definitions/steamPackage"
+                },
+                "gog": {
+                    "$ref": "#/definitions/gogProduct"
+                },
+                "egs": {
+                    "$ref": "#/definitions/egsCatalogItem"
+                },
+                "xbox": {
+                    "$ref": "#/definitions/xboxGame"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "id": {
+            "$ref": "#/definitions/guid"
+        },
+        "name": {
+            "$ref": "#/definitions/name"
+        },
+        "stores": {
+            "$ref": "#/definitions/storesGames"
+        },
+        "dlcs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/definitions/guid"
+                    },
+                    "name": {
+                        "$ref": "#/definitions/name"
+                    },
+                    "stores": {
+                        "$ref": "#/definitions/storesGames"
+                    }
+                },
+                "required": [ "id", "name" ],
+                "additionalProperties": false
+            },
+            "uniqueItems": true
+        },
+        "bundles": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/definitions/guid"
+                    },
+                    "name": {
+                        "$ref": "#/definitions/name"
+                    },
+                    "stores": {
+                        "$ref": "#/definitions/storesBundles"
+                    }
+                },
+                "required": [ "id", "name" ],
+                "additionalProperties": false
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [ "id", "name" ],
+    "additionalProperties": false
+}

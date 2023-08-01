@@ -1,0 +1,32 @@
+---
+id: 'e0902c12-2065-435d-b1bd-e7693a98decd'
+name: 'The Elder Scrolls V: Skyrim'
+
+stores:
+    steam:
+        name: 'The Elder Scrolls V: Skyrim'
+        url: 'https://store.steampowered.com/app/72850/'
+        appId: 72850
+
+dlcs:
+    - id: '355f5a4c-1825-4171-90fa-ad44c4e7b206'
+      name: 'The Elder Scrolls V: Skyrim - Dawnguard'
+      stores:
+          steam:
+              name: 'The Elder Scrolls V: Skyrim - Dawnguard'
+              url: 'https://store.steampowered.com/app/211720/'
+              appId: 211720
+    - id: '2a183a3a-9d49-440b-a28a-6b7aef692791'
+      name: 'The Elder Scrolls V: Skyrim - Hearthfire'
+      stores:
+          steam:
+              name: 'The Elder Scrolls V: Skyrim - Hearthfire'
+              url: 'https://store.steampowered.com/app/220760/'
+              appId: 220760
+    - id: 'a1bf32dd-f303-48f6-a66f-bf33396c9add'
+      name: 'The Elder Scrolls V: Skyrim - Dragonborn'
+      stores:
+          steam:
+              name: 'The Elder Scrolls V: Skyrim - Dragonborn'
+              url: 'https://store.steampowered.com/app/226880/'
+              appId: 226880

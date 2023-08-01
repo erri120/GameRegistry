@@ -1,0 +1,63 @@
+---
+id: 'd0600304-0e15-4c15-bb9e-205f72c79bde'
+name: 'The Elder Scrolls V: Skyrim Special Edition'
+
+stores:
+    steam:
+        name: 'The Elder Scrolls V: Skyrim Special Edition'
+        url: 'https://store.steampowered.com/app/489830/'
+        appId: 489830
+    gog:
+        name: 'The Elder Scrolls V: Skyrim Special Edition'
+        url: 'https://www.gog.com/game/the_elder_scrolls_v_skyrim_special_edition'
+        productId: 1711230643
+    egs:
+        name: 'The Elder Scrolls V: Skyrim Special Edition'
+        url: 'https://store.epicgames.com/en-US/p/skyrim'
+        catalogItemId: '???'
+    xbox:
+        name: 'The Elder Scrolls V: Skyrim Special Edition (PC)'
+        url: 'https://www.xbox.com/en-US/games/store/The-Elder-Scrolls-V-Skyrim-Special-Edition-PC/9P03JGQ4S1GC'
+        id: '???'
+
+dlcs:
+    - id: 'e7d7d7d5-4cd7-47e6-9bed-801ff4522c9d'
+      name: 'The Elder Scrolls V: Skyrim Anniversary Upgrade'
+      stores:
+          steam:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Upgrade'
+              url: 'https://store.steampowered.com/app/1746860/'
+              appId: 1746860
+          gog:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Upgrade'
+              url: 'https://www.gog.com/game/the_elder_scrolls_v_skyrim_anniversary_upgrade'
+              productId: 1162721350
+          egs:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Upgrade'
+              url: 'https://store.epicgames.com/en-US/p/skyrim--anniversary-upgrade'
+              catalogItemId: '???'
+          xbox:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Upgrade (PC)'
+              url: 'https://www.xbox.com/en-US/games/store/the-elder-scrolls-v-skyrim-anniversary-upgrade-pc/9P460GXR9ZVW'
+              id: '???'
+
+bundles:
+    - id: '937773aa-6f4d-483c-b150-ab5637a9e5d4'
+      name: 'The Elder Scrolls V: Skyrim Anniversary Edition'
+      stores:
+          steam:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Edition'
+              url: 'https://store.steampowered.com/sub/626153/'
+              subId: 626153
+          gog:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Edition'
+              url: 'https://www.gog.com/game/the_elder_scrolls_v_skyrim_anniversary_edition'
+              productId: 1801825368
+          egs:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Edition'
+              url: 'https://store.epicgames.com/en-US/p/skyrim--anniversary-edition'
+              catalogItemId: '???'
+          xbox:
+              name: 'The Elder Scrolls V: Skyrim Anniversary Edition (PC)'
+              url: 'https://www.xbox.com/en-US/games/store/the-elder-scrolls-v-skyrim-anniversary-edition-pc/9NFW7GND3WNZ'
+              id: '???'
