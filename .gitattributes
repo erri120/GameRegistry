@@ -2,8 +2,8 @@
 
 *.md text diff=markdown
 
-*.json text
-*.yaml text
+*.json text linguist-detectable=true
+*.yaml text linguist-detectable=true
 
 # Text files where line endings should be preserved
 *.patch    -text
