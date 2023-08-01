@@ -10,5 +10,5 @@ stores:
     steam:
         name: 'Fear & Hunger 2: Termina'
         url: 'https://store.steampowered.com/app/2171440/'
-        appId: 217144
+        appId: 2171440
         restrictedCountries: [ 'CHN', 'DEU' ]
