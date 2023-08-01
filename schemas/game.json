@@ -8,10 +8,13 @@
             "type": "string",
             "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
         },
-        "name": {
+        "nonEmptyString": {
             "type": "string",
             "$comment": "https://regex101.com/r/dCBZ4k/1",
             "pattern": "^(?!\\s)\\S.*(?<!\\s)$"
+        },
+        "name": {
+            "$ref": "#/definitions/nonEmptyString"
         },
         "steamApp": {
             "type": "object",
@@ -79,7 +82,7 @@
                     "pattern": "^https://store\\.epicgames\\.com/en-[uU][sS]/p/[\\w-]+$"
                 },
                 "catalogItemId": {
-                    "type": "string"
+                    "$ref": "#/definitions/nonEmptyString"
                 }
             },
             "required": [ "name", "catalogItemId" ],
@@ -97,7 +100,7 @@
                     "pattern": "^https://www\\.xbox\\.com/en-[uU][sS]/games/store/[\\w-]+/\\w+$"
                 },
                 "id": {
-                    "type": "string"
+                    "$ref": "#/definitions/nonEmptyString"
                 }
             },
             "required": [ "name", "id" ],
