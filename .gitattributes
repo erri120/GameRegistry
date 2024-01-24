@@ -5,6 +5,10 @@
 *.json text linguist-detectable=true
 *.yaml text linguist-detectable=true
 
+*.cs       text diff=csharp
+*.sln      text eol=crlf
+*.csproj   text eol=crlf
+
 # Text files where line endings should be preserved
 *.patch    -text
 

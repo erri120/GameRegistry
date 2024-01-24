@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solutionItems", ".solutionItems", "{0219A434-4BC5-4E17-BB27-F290604B6404}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		yamllint.yaml = yamllint.yaml
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{2769231D-BB2B-4D0F-B303-422EDC28E1B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validator", "utils\Validator\Validator.csproj", "{51AACB3D-F033-4F18-8AB9-63958CE9C5EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{51AACB3D-F033-4F18-8AB9-63958CE9C5EA} = {2769231D-BB2B-4D0F-B303-422EDC28E1B7}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51AACB3D-F033-4F18-8AB9-63958CE9C5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AACB3D-F033-4F18-8AB9-63958CE9C5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AACB3D-F033-4F18-8AB9-63958CE9C5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AACB3D-F033-4F18-8AB9-63958CE9C5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
