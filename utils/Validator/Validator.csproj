@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="ISO3166" Version="1.0.4" />
         <PackageReference Include="NLog" Version="5.2.8" />
         <PackageReference Include="JsonSchema.Net" Version="4.1.8" />
         <PackageReference Include="Yaml2JsonNode" Version="1.2.3" />

@@ -34,12 +34,16 @@ public static class Runner
 
     public static async Task<bool> RunAsync(CancellationToken cancellationToken)
     {
+        CustomFormats.RegisterAll();
+
         var schemaPath = Path.GetFullPath("../../../../../schemas/game.json");
         var schema = JsonSchema.FromFile(schemaPath, JsonSerializerOptions.Default);
 
         var evaluationOptions = new EvaluationOptions
         {
             OutputFormat = OutputFormat.Hierarchical,
+            RequireFormatValidation = true,
+            OnlyKnownFormats = true,
             Log = new EvaluationLogger()
         };
 
