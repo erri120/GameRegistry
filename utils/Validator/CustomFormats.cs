@@ -8,11 +8,11 @@ namespace Validator;
 
 public static class CustomFormats
 {
-    private static ImmutableSortedSet<string> _countryCodes;
+    private static readonly ImmutableSortedSet<string> CountryCodes;
 
     static CustomFormats()
     {
-        _countryCodes = ISO3166.Country.List.Select(country => country.ThreeLetterCode).ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase);
+        CountryCodes = ISO3166.Country.List.Select(country => country.ThreeLetterCode).ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase);
     }
 
     public static void RegisterAll()
@@ -37,7 +37,7 @@ public static class CustomFormats
             return false;
         }
 
-        if (_countryCodes.Contains(stringValue)) return true;
+        if (CountryCodes.Contains(stringValue)) return true;
         errormessage = $"'{stringValue}' is not a valid ISO 3166-1 alpha-3 country code!";
         return false;
     }
