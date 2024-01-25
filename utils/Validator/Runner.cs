@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -36,7 +37,10 @@ public static class Runner
     {
         CustomFormats.RegisterAll();
 
-        var schemaPath = Path.GetFullPath("../../../../../schemas/game.json");
+        var root = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!).Parent!.Parent!.Parent!.Parent!.Parent!.ToString();
+        Logger.Info("Using root: {Root}", root);
+
+        var schemaPath = Path.Combine(root, "schemas", "game.json");
         var schema = JsonSchema.FromFile(schemaPath, JsonSerializerOptions.Default);
 
         var evaluationOptions = new EvaluationOptions
@@ -49,7 +53,7 @@ public static class Runner
 
         var numFailed = 0;
 
-        var yamlFilesPath = Path.GetFullPath("../../../../../games");
+        var yamlFilesPath = Path.Combine(root, "games");
         foreach (var file in Directory.GetFiles(yamlFilesPath))
         {
             if (cancellationToken.IsCancellationRequested) break;

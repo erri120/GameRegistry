@@ -3,23 +3,13 @@ name: Validate
 on:
     push:
         branches: [ main ]
-        paths:
-            - '.github/workflows/validate.yaml'
-            - 'schemas/*.json'
-            - 'games/*.yaml'
     pull_request:
         branches: [ main ]
-        paths:
-            - '.github/workflows/validate.yaml'
-            - 'schemas/*.json'
-            - 'games/*.yaml'
     workflow_dispatch:
 
-env:
-    NODE_VERSION: 18
 
 jobs:
-    validate-schema:
+    validate:
         runs-on: ubuntu-latest
 
         steps:
@@ -27,36 +17,14 @@ jobs:
               with:
                   submodules: 'recursive'
 
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ env.NODE_VERSION }}
-                  cache: 'npm'
+            - name: Print Debug Info
+              run: dotnet --info
 
-            - name: Install
-              run: |
-                  npm ci
-                  npm install
+            - name: Restore dependencies
+              run: dotnet restore
 
-            - name: Validate Schema
-              run: npm run compile
+            - name: Build
+              run: dotnet build --no-restore
 
-    validate-games:
-        runs-on: ubuntu-latest
-
-        steps:
-            - uses: actions/checkout@v3
-              with:
-                  submodules: 'recursive'
-
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ env.NODE_VERSION }}
-                  cache: 'npm'
-
-            - name: Install
-              run: |
-                  npm ci
-                  npm install
-
-            - name: Validate
-              run: npm run validate
+            - name: Run
+              run: dotnet run --project utils/Validator/Validator.csproj
