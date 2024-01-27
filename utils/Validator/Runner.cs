@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
 using Json.Pointer;
@@ -56,11 +57,25 @@ public static class Runner
         var yamlFilesPath = Path.Combine(root, "games");
         foreach (var file in Directory.GetFiles(yamlFilesPath))
         {
-            if (cancellationToken.IsCancellationRequested) break;
+            try
+            {
+                Logger.Info("Validating file {File}", file);
+                if (cancellationToken.IsCancellationRequested) break;
 
-            await using var fs = File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var failed = Validate(file, fs, schema, evaluationOptions);
-            if (failed) numFailed++;
+                await using var fs = File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var stream = new YamlStream();
+                stream.Load(new StreamReader(fs, Encoding.UTF8));
+
+                var jsonNode = stream.Documents[0].ToJsonNode();
+                if (jsonNode is null || ValidateAgainstSchema(jsonNode, schema, evaluationOptions) || ValidateValues(file, jsonNode))
+                {
+                    numFailed++;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, "Exception while validating file {File}", file);
+            }
         }
 
         if (numFailed == 0)
@@ -74,14 +89,8 @@ public static class Runner
     }
 
     [SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
-    private static bool Validate(string file, Stream fs, JsonSchema schema, EvaluationOptions evaluationOptions)
+    private static bool ValidateAgainstSchema(JsonNode jsonNode, JsonSchema schema, EvaluationOptions evaluationOptions)
     {
-        Logger.Info("Validating file {File}", file);
-
-        var stream = new YamlStream();
-        stream.Load(new StreamReader(fs, Encoding.UTF8));
-
-        var jsonNode = stream.Documents[0].ToJsonNode();
         var results = schema.Evaluate(jsonNode, evaluationOptions);
 
         var stack = new Stack<EvaluationResults>();
@@ -107,5 +116,24 @@ public static class Runner
         }
 
         return failed;
+    }
+
+    private static bool ValidateValues(string file, JsonNode jsonNode)
+    {
+        var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
+        if (!Guid.TryParse(fileNameWithoutExtension, out var idInFileName))
+        {
+            Logger.Error("File {File} doesn't have a valid GUID as a file name", file);
+            return true;
+        }
+
+        var idInData = Guid.Parse(jsonNode["id"]!.GetValue<string>());
+        if (!idInData.Equals(idInFileName))
+        {
+            Logger.Error("ID in file name {File} doesn't match with ID in data {ID}", file, idInData.ToString());
+            return true;
+        }
+
+        return false;
     }
 }
