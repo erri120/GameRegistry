@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
+using Json.More;
 using Json.Pointer;
 using Json.Schema;
 using NLog;
@@ -52,8 +53,9 @@ public static class Runner
             Log = new EvaluationLogger()
         };
 
-        var numFailed = 0;
+        var idValidator = new IdValidator();
 
+        var numFailed = 0;
         var yamlFilesPath = Path.Combine(root, "games");
         foreach (var file in Directory.GetFiles(yamlFilesPath))
         {
@@ -67,7 +69,7 @@ public static class Runner
                 stream.Load(new StreamReader(fs, Encoding.UTF8));
 
                 var jsonNode = stream.Documents[0].ToJsonNode();
-                if (jsonNode is null || ValidateAgainstSchema(jsonNode, schema, evaluationOptions) || ValidateValues(file, jsonNode))
+                if (jsonNode is null || ValidateAgainstSchema(jsonNode, schema, evaluationOptions) || ValidateValues(idValidator, file, jsonNode))
                 {
                     numFailed++;
                 }
@@ -118,7 +120,7 @@ public static class Runner
         return failed;
     }
 
-    private static bool ValidateValues(string file, JsonNode jsonNode)
+    private static bool ValidateValues(IdValidator idValidator, string file, JsonNode jsonNode)
     {
         var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
         if (!Guid.TryParse(fileNameWithoutExtension, out var idInFileName))
@@ -134,6 +136,7 @@ public static class Runner
             return true;
         }
 
+        idValidator.AddIds(jsonNode);
         return false;
     }
 }
